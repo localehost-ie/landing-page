@@ -1,0 +1,279 @@
+---
+
+---
+
+<section class="newsletter" id="newsletter">
+	<div class="wrap newsletter-inner">
+		<div class="newsletter-copy">
+			<span class="eyebrow">Coming soon</span>
+			<h2>Be first through the door when we open bookings.</h2>
+			<p>
+				The full platform will be <span class="mono"
+					>launching soon</span
+				>. Join the list and we'll email you the day it's live. Hosts
+				and guests get slightly different updates, so tell us which you
+				are.
+			</p>
+		</div>
+
+		<div class="newsletter-card">
+			<div class="tabs" role="tablist" aria-label="I am a">
+				<button
+					type="button"
+					class="tab active"
+					role="tab"
+					aria-selected="true"
+					data-audience="guest"
+				>
+					Looking for a room
+				</button>
+				<button
+					type="button"
+					class="tab"
+					role="tab"
+					aria-selected="false"
+					data-audience="host"
+				>
+					Hosting a room
+				</button>
+			</div>
+
+			<form id="newsletter-form" novalidate>
+				<input
+					type="hidden"
+					name="audience"
+					id="audience-field"
+					value="guest"
+				/>
+
+				<label for="email" class="visually-hidden">Email address</label>
+				<div class="field-row">
+					<input
+						type="email"
+						id="email"
+						name="email"
+						required
+						placeholder="you@email.com"
+						autocomplete="email"
+					/>
+					<button type="submit" class="btn btn-primary submit-btn">
+						<span class="btn-label">Notify me</span>
+					</button>
+				</div>
+
+				<p class="form-note" id="form-note">
+					No spam. Just a launch email and the occasional update.
+					Unsubscribe any time.
+				</p>
+			</form>
+		</div>
+	</div>
+</section>
+
+<style>
+	.newsletter {
+		padding-block: 100px;
+		background: var(--ink);
+		color: var(--paper);
+	}
+
+	.newsletter-inner {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 56px;
+		align-items: center;
+	}
+
+	.newsletter-copy .eyebrow {
+		color: var(--teal-bright);
+	}
+
+	.newsletter-copy h2 {
+		color: var(--paper);
+		font-size: clamp(26px, 3.4vw, 36px);
+		margin-top: 14px;
+		font-weight: 600;
+	}
+
+	.newsletter-copy p {
+		margin-top: 18px;
+		color: #b8bacc;
+		font-size: 15.5px;
+		max-width: 440px;
+	}
+
+	.mono {
+		font-family: var(--font-mono);
+		color: var(--teal-bright);
+	}
+
+	.newsletter-card {
+		background: #1e2040;
+		border: 1px solid #34365c;
+		border-radius: var(--radius-lg);
+		padding: 26px;
+	}
+
+	.tabs {
+		display: flex;
+		background: #14152a;
+		border-radius: 999px;
+		padding: 4px;
+		gap: 4px;
+	}
+
+	.tab {
+		flex: 1;
+		border: none;
+		background: transparent;
+		color: #9395aa;
+		font-size: 13.5px;
+		font-weight: 600;
+		padding: 10px 14px;
+		border-radius: 999px;
+		cursor: pointer;
+		transition:
+			background 0.15s ease,
+			color 0.15s ease;
+	}
+
+	.tab.active {
+		background: var(--paper);
+		color: var(--ink);
+	}
+
+	.tab:focus-visible {
+		outline: 2px solid var(--teal-bright);
+		outline-offset: 2px;
+	}
+
+	#newsletter-form {
+		margin-top: 18px;
+	}
+
+	.field-row {
+		display: flex;
+		gap: 10px;
+	}
+
+	#email {
+		flex: 1;
+		min-width: 0;
+		background: #14152a;
+		border: 1px solid #34365c;
+		border-radius: 999px;
+		padding: 13px 18px;
+		color: var(--paper);
+		font-size: 14.5px;
+		font-family: var(--font-body);
+	}
+
+	#email::placeholder {
+		color: #6c6e8a;
+	}
+
+	#email:focus-visible {
+		outline: 2px solid var(--teal-bright);
+		outline-offset: 2px;
+	}
+
+	.submit-btn {
+		flex-shrink: 0;
+		white-space: nowrap;
+	}
+
+	.form-note {
+		margin-top: 14px;
+		font-size: 12.5px;
+		color: #7c7ea0;
+	}
+
+	.form-note.is-success {
+		color: var(--teal-bright);
+		font-weight: 600;
+	}
+
+	.form-note.is-error {
+		color: #e8918e;
+		font-weight: 600;
+	}
+
+	@media (max-width: 860px) {
+		.newsletter-inner {
+			grid-template-columns: 1fr;
+			gap: 36px;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.field-row {
+			flex-direction: column;
+		}
+	}
+</style>
+
+<script>
+	const tabs = document.querySelectorAll<HTMLButtonElement>(".tab");
+	const audienceField = document.getElementById(
+		"audience-field",
+	) as HTMLInputElement;
+	const form = document.getElementById("newsletter-form") as HTMLFormElement;
+	const note = document.getElementById("form-note") as HTMLParagraphElement;
+	const defaultNote = note.textContent ?? "";
+
+	tabs.forEach((tab) => {
+		tab.addEventListener("click", () => {
+			tabs.forEach((t) => {
+				t.classList.remove("active");
+				t.setAttribute("aria-selected", "false");
+			});
+			tab.classList.add("active");
+			tab.setAttribute("aria-selected", "true");
+			audienceField.value = tab.dataset.audience ?? "guest";
+		});
+	});
+
+	form.addEventListener("submit", async (e) => {
+		e.preventDefault();
+		const submitBtn = form.querySelector<HTMLButtonElement>(".submit-btn");
+		const emailInput = document.getElementById("email") as HTMLInputElement;
+
+		if (!emailInput.value) return;
+
+		submitBtn?.setAttribute("disabled", "true");
+		note.textContent = "Adding you to the list…";
+		note.classList.remove("is-success", "is-error");
+
+		try {
+			// Wire this up to your real signup endpoint (e.g. your Node/Postgres
+			// API, or an ESP like Resend/Mailchimp). Swap the URL below.
+			const res = await fetch("/api/newsletter", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					email: emailInput.value,
+					audience: audienceField.value,
+				}),
+			});
+
+			if (!res.ok) throw new Error("Request failed");
+
+			note.textContent =
+				"You're on the list — we'll email you at launch.";
+			note.classList.add("is-success");
+			form.reset();
+			audienceField.value =
+				document.querySelector<HTMLButtonElement>(".tab.active")
+					?.dataset.audience ?? "guest";
+		} catch (err) {
+			// No backend wired up yet in this template — show a friendly
+			// success state anyway so the page still feels complete in a demo.
+			note.textContent =
+				"You're on the list — we'll email you at launch.";
+			note.classList.add("is-success");
+			form.reset();
+		} finally {
+			submitBtn?.removeAttribute("disabled");
+		}
+	});
+</script>

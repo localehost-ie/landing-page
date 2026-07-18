@@ -1,0 +1,140 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+	<div class="wrap footer-inner">
+		<div class="footer-brand">
+			<span class="logo-mark">
+				<svg
+					width="22"
+					height="22"
+					viewBox="0 0 32 32"
+					fill="none"
+					aria-hidden="true"
+				>
+					<rect width="32" height="32" rx="8" fill="var(--ink)"
+					></rect>
+					<path
+						d="M8 17.5L16 10l8 7.5"
+						stroke="var(--teal-bright)"
+						stroke-width="2.4"
+						fill="none"
+						stroke-linecap="round"
+						stroke-linejoin="round"></path>
+					<path
+						d="M11 16v7h10v-7"
+						stroke="var(--paper)"
+						stroke-width="2.4"
+						fill="none"
+						stroke-linecap="round"
+						stroke-linejoin="round"></path>
+				</svg>
+				LocaleHost
+			</span>
+			<p>Fair, verified room-sharing for Ireland.</p>
+		</div>
+
+		<div class="footer-col">
+			<span class="footer-heading">Platform</span>
+			<a href="https://app.localehost.ie">app.localehost.ie</a>
+			<span class="footer-soon">Launching soon</span>
+		</div>
+
+		<div class="footer-col">
+			<span class="footer-heading">Reading</span>
+			<span class="footer-soon"
+				>Notes on renting in Ireland — blog coming soon</span
+			>
+		</div>
+
+		<div class="footer-col">
+			<span class="footer-heading">Get in touch</span>
+			<!-- <a href="mailto:hello@localehost.ie">hello@localehost.ie</a> -->
+		</div>
+	</div>
+
+	<div class="wrap footer-bottom">
+		<span>© {year} LocaleHost</span>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		background: var(--ink);
+		color: #b8bacc;
+		padding-top: 64px;
+	}
+
+	.footer-inner {
+		display: grid;
+		grid-template-columns: 1.4fr 1fr 1fr 1fr;
+		gap: 32px;
+		padding-bottom: 48px;
+		border-bottom: 1px solid #2c2e4e;
+	}
+
+	.logo-mark {
+		display: inline-flex;
+		align-items: center;
+		gap: 9px;
+		font-family: var(--font-display);
+		font-weight: 600;
+		font-size: 17px;
+		color: var(--paper);
+	}
+
+	.footer-brand p {
+		margin-top: 12px;
+		font-size: 13.5px;
+		max-width: 220px;
+	}
+
+	.footer-col {
+		display: flex;
+		flex-direction: column;
+		gap: 9px;
+	}
+
+	.footer-heading {
+		font-family: var(--font-mono);
+		font-size: 11px;
+		letter-spacing: 0.07em;
+		text-transform: uppercase;
+		color: #7c7ea0;
+		margin-bottom: 4px;
+	}
+
+	.footer-col a {
+		color: #b8bacc;
+		text-decoration: none;
+		font-size: 14px;
+	}
+
+	.footer-col a:hover {
+		color: var(--paper);
+	}
+
+	.footer-soon {
+		font-size: 13px;
+		color: #7c7ea0;
+	}
+
+	.footer-bottom {
+		padding-block: 22px;
+		font-size: 12.5px;
+		color: #7c7ea0;
+	}
+
+	@media (max-width: 720px) {
+		.footer-inner {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+
+	@media (max-width: 460px) {
+		.footer-inner {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

@@ -1,0 +1,156 @@
+---
+const rows = [
+	{
+		typical: "Fee is captured the moment a host accepts your request.",
+		local: "Fee is held until the check-in window opens. Captured only once you both reconfirm.",
+	},
+	{
+		typical:
+			"Host cancels last minute, you're left covering the gap yourself.",
+		local: "Host-side cancellation refunds automatically. No ticket, no waiting.",
+	},
+	{
+		typical:
+			"Support runs through a single inbox, answered in a day or two.",
+		local: "Email and WhatsApp, tied to your booking. No re-explaining the situation.",
+	},
+];
+---
+
+<section class="comparison">
+	<div class="wrap">
+		<span class="eyebrow">Why we built this</span>
+		<h2>Most of what goes wrong isn't the room. It's the money.</h2>
+
+		<div class="comp-table" role="table">
+			<div class="comp-head" role="row">
+				<span role="columnheader">Typical platforms</span>
+				<span role="columnheader" class="comp-head-local"
+					>LocaleHost</span
+				>
+			</div>
+			{
+				rows.map((row) => (
+					<div class="comp-row" role="row">
+						<div class="comp-cell comp-typical" role="cell">
+							<span
+								class="comp-icon comp-icon-x"
+								aria-hidden="true"
+							>
+								✕
+							</span>
+							<span>{row.typical}</span>
+						</div>
+						<div class="comp-cell comp-local" role="cell">
+							<span
+								class="comp-icon comp-icon-check"
+								aria-hidden="true"
+							>
+								✓
+							</span>
+							<span>{row.local}</span>
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>
+
+<style>
+	.comparison {
+		padding-block: 88px;
+		background: var(--paper-raised);
+		border-block: 1px solid var(--line);
+	}
+
+	.comparison h2 {
+		font-size: clamp(26px, 3.4vw, 36px);
+		max-width: 620px;
+		margin-top: 14px;
+		font-weight: 600;
+	}
+
+	.comp-table {
+		margin-top: 44px;
+		border: 1px solid var(--line);
+		border-radius: var(--radius-md);
+		overflow: hidden;
+	}
+
+	.comp-head {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		font-family: var(--font-mono);
+		font-size: 11.5px;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--ink-faint);
+		background: var(--paper);
+	}
+
+	.comp-head span {
+		padding: 14px 22px;
+	}
+
+	.comp-head-local {
+		color: var(--teal);
+		background: var(--teal-soft);
+	}
+
+	.comp-row {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		border-top: 1px solid var(--line);
+	}
+
+	.comp-cell {
+		display: flex;
+		align-items: flex-start;
+		gap: 12px;
+		padding: 18px 22px;
+		font-size: 14.5px;
+	}
+
+	.comp-typical {
+		color: var(--ink-soft);
+	}
+
+	.comp-local {
+		background: var(--teal-soft);
+		color: var(--ink);
+		font-weight: 500;
+	}
+
+	.comp-icon {
+		flex-shrink: 0;
+		width: 18px;
+		height: 18px;
+		border-radius: 50%;
+		font-size: 11px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		margin-top: 1px;
+	}
+
+	.comp-icon-x {
+		background: #f1e4e4;
+		color: #a45b5b;
+	}
+
+	.comp-icon-check {
+		background: var(--teal);
+		color: white;
+	}
+
+	@media (max-width: 720px) {
+		.comp-row,
+		.comp-head {
+			grid-template-columns: 1fr;
+		}
+		.comp-typical {
+			border-bottom: 1px dashed var(--line);
+		}
+	}
+</style>

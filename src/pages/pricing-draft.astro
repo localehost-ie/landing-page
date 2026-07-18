@@ -1,0 +1,217 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+// Draft duration-scaled fee schedule. Modeled on the same shape HostingPower
+// uses — one-time fee at booking, scaling down per week the longer the
+// stay — but re-priced lower and with gentler steps between bands.
+// Residency (verified Irish resident vs. international) applies a flat
+// reduction underneath this scale rather than being shown as a separate
+// pricing track. Nothing here is final — see the note banner below.
+const bands = [
+	{ range: "2-4 weeks", fee: 180, perWeek: "≈ €50 / week" },
+	{ range: "1-2 months", fee: 230, perWeek: "≈ €29 / week" },
+	{ range: "3-5 months", fee: 290, perWeek: "≈ €16 / week" },
+	{ range: "6+ months", fee: 340, perWeek: "≈ €10 / week" },
+];
+---
+
+<Layout title="Pricing (draft) — LocaleHost" noindex>
+	<Header />
+	<main>
+		<section class="pricing-draft">
+			<div class="wrap">
+				<div class="draft-banner">
+					<span class="draft-dot" aria-hidden="true"></span>
+					Draft — internal review only, not linked from the site yet
+				</div>
+
+				<span class="eyebrow">Pricing model</span>
+				<h1>One fee, scaled to how long you're staying.</h1>
+				<p class="lede">
+					Same shape as most room-share platforms use — a single
+					one-time fee at booking that scales down per week the longer
+					the stay — priced lower, with smaller jumps between bands so
+					nobody hits a cliff at the edge of a range.
+				</p>
+
+				<div class="fee-table" role="table">
+					<div class="fee-head" role="row">
+						<span role="columnheader">Length of stay</span>
+						<span role="columnheader">One-time fee</span>
+						<span role="columnheader">Works out to</span>
+					</div>
+					{
+						bands.map((band) => (
+							<div class="fee-row" role="row">
+								<span class="fee-range" role="cell">
+									{band.range}
+								</span>
+								<span class="fee-amount" role="cell">
+									€{band.fee}
+								</span>
+								<span class="fee-perweek" role="cell">
+									{band.perWeek}
+								</span>
+							</div>
+						))
+					}
+				</div>
+
+				<p class="residency-note">
+					Verified Irish residents get a flat reduction on every band
+					above, applied automatically once residency is confirmed —
+					no separate pricing page, no different flow, just a lower
+					number at checkout.
+				</p>
+
+				<div class="open-questions">
+					<span class="eyebrow">Still open</span>
+					<ul>
+						<li>Where the exact euro amounts land in each band</li>
+						<li>Size of the residency reduction</li>
+						<li>
+							Whether the fee is held in full or partially during
+							the reconfirmation window, per the booking flow
+						</li>
+						<li>
+							Whether bands should be monthly instead of the mixed
+							weeks/months split above
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.pricing-draft {
+		padding-block: 72px 96px;
+	}
+
+	.draft-banner {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: var(--font-mono);
+		font-size: 12px;
+		letter-spacing: 0.03em;
+		color: var(--amber);
+		background: var(--amber-soft);
+		border: 1px solid #ebd6bc;
+		padding: 8px 14px;
+		border-radius: 999px;
+		margin-bottom: 28px;
+	}
+
+	.draft-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: var(--amber);
+	}
+
+	.pricing-draft h1 {
+		font-size: clamp(28px, 4vw, 42px);
+		margin-top: 14px;
+		font-weight: 600;
+		max-width: 640px;
+	}
+
+	.lede {
+		margin-top: 18px;
+		color: var(--ink-soft);
+		font-size: 16px;
+		max-width: 580px;
+	}
+
+	.fee-table {
+		margin-top: 40px;
+		border: 1px solid var(--line);
+		border-radius: var(--radius-md);
+		overflow: hidden;
+		max-width: 620px;
+	}
+
+	.fee-head {
+		display: grid;
+		grid-template-columns: 1.2fr 1fr 1fr;
+		font-family: var(--font-mono);
+		font-size: 11px;
+		letter-spacing: 0.07em;
+		text-transform: uppercase;
+		color: var(--ink-faint);
+		background: var(--paper);
+	}
+
+	.fee-head span {
+		padding: 13px 20px;
+	}
+
+	.fee-row {
+		display: grid;
+		grid-template-columns: 1.2fr 1fr 1fr;
+		border-top: 1px solid var(--line);
+		background: var(--paper-raised);
+	}
+
+	.fee-row span {
+		padding: 16px 20px;
+		font-size: 14.5px;
+	}
+
+	.fee-range {
+		color: var(--ink);
+		font-weight: 500;
+	}
+
+	.fee-amount {
+		font-family: var(--font-mono);
+		font-weight: 500;
+		color: var(--indigo);
+	}
+
+	.fee-perweek {
+		color: var(--ink-faint);
+		font-family: var(--font-mono);
+		font-size: 13px;
+	}
+
+	.residency-note {
+		margin-top: 22px;
+		font-size: 13.5px;
+		color: var(--ink-faint);
+		max-width: 560px;
+	}
+
+	.open-questions {
+		margin-top: 56px;
+		padding-top: 32px;
+		border-top: 1px dashed var(--line);
+		max-width: 560px;
+	}
+
+	.open-questions ul {
+		margin: 16px 0 0;
+		padding-left: 18px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		color: var(--ink-soft);
+		font-size: 14px;
+	}
+
+	@media (max-width: 640px) {
+		.fee-head,
+		.fee-row {
+			grid-template-columns: 1fr 1fr;
+		}
+		.fee-head span:last-child,
+		.fee-row span:last-child {
+			display: none;
+		}
+	}
+</style>
