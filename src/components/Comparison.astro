@@ -17,38 +17,36 @@ const rows = [
 ];
 ---
 
-<section class="comparison">
+<section class="border-y border-base-300 bg-base-100 py-16 md:py-[88px]">
 	<div class="wrap">
-		<span class="eyebrow">Why we built this</span>
-		<h2>Most of what goes wrong isn't the room. It's the money.</h2>
+		<h2 class="section-heading">
+			Most of what goes wrong isn't the room. It's the money.
+		</h2>
 
-		<div class="comp-table" role="table">
-			<div class="comp-head" role="row">
-				<span role="columnheader">Typical platforms</span>
-				<span role="columnheader" class="comp-head-local"
-					>LocaleHost</span
-				>
+		<div class="mt-11 overflow-hidden rounded-box border border-base-300">
+			<div
+				class="grid grid-cols-2 bg-base-200 text-xs uppercase tracking-widest text-ink-faint max-sm:grid-cols-1"
+			>
+				<div class="p-4 sm:px-6">Typical platforms</div>
+				<div class="bg-teal-soft p-4 text-teal-brand sm:px-6">
+					LocaleHost
+				</div>
 			</div>
+
 			{
 				rows.map((row) => (
-					<div class="comp-row" role="row">
-						<div class="comp-cell comp-typical" role="cell">
-							<span
-								class="comp-icon comp-icon-x"
-								aria-hidden="true"
-							>
+					<div class="grid grid-cols-2 border-t border-base-300 max-sm:grid-cols-1">
+						<div class="flex items-start gap-3 p-5 text-sm text-ink-soft sm:px-6">
+							<span class="mt-0.5 flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-error/10 text-[11px] text-error">
 								✕
 							</span>
-							<span>{row.typical}</span>
+							{row.typical}
 						</div>
-						<div class="comp-cell comp-local" role="cell">
-							<span
-								class="comp-icon comp-icon-check"
-								aria-hidden="true"
-							>
+						<div class="flex items-start gap-3 bg-teal-soft p-5 text-sm font-medium text-ink sm:px-6">
+							<span class="mt-0.5 flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-secondary text-[11px] text-white">
 								✓
 							</span>
-							<span>{row.local}</span>
+							{row.local}
 						</div>
 					</div>
 				))
@@ -56,101 +54,3 @@ const rows = [
 		</div>
 	</div>
 </section>
-
-<style>
-	.comparison {
-		padding-block: 88px;
-		background: var(--paper-raised);
-		border-block: 1px solid var(--line);
-	}
-
-	.comparison h2 {
-		font-size: clamp(26px, 3.4vw, 36px);
-		max-width: 620px;
-		margin-top: 14px;
-		font-weight: 600;
-	}
-
-	.comp-table {
-		margin-top: 44px;
-		border: 1px solid var(--line);
-		border-radius: var(--radius-md);
-		overflow: hidden;
-	}
-
-	.comp-head {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		font-family: var(--font-mono);
-		font-size: 11.5px;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: var(--ink-faint);
-		background: var(--paper);
-	}
-
-	.comp-head span {
-		padding: 14px 22px;
-	}
-
-	.comp-head-local {
-		color: var(--teal);
-		background: var(--teal-soft);
-	}
-
-	.comp-row {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		border-top: 1px solid var(--line);
-	}
-
-	.comp-cell {
-		display: flex;
-		align-items: flex-start;
-		gap: 12px;
-		padding: 18px 22px;
-		font-size: 14.5px;
-	}
-
-	.comp-typical {
-		color: var(--ink-soft);
-	}
-
-	.comp-local {
-		background: var(--teal-soft);
-		color: var(--ink);
-		font-weight: 500;
-	}
-
-	.comp-icon {
-		flex-shrink: 0;
-		width: 18px;
-		height: 18px;
-		border-radius: 50%;
-		font-size: 11px;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		margin-top: 1px;
-	}
-
-	.comp-icon-x {
-		background: #f1e4e4;
-		color: #a45b5b;
-	}
-
-	.comp-icon-check {
-		background: var(--teal);
-		color: white;
-	}
-
-	@media (max-width: 720px) {
-		.comp-row,
-		.comp-head {
-			grid-template-columns: 1fr;
-		}
-		.comp-typical {
-			border-bottom: 1px dashed var(--line);
-		}
-	}
-</style>

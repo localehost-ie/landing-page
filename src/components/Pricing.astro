@@ -4,170 +4,92 @@ const tiers = [
 		label: "Verified Irish residents",
 		price: "€200",
 		note: "One-time fee, held until check-in opens",
-		perks: ["PPS-verified residency", "Faster reference checks", "Priority matching"],
+		perks: [
+			"PPS-verified residency",
+			"Faster reference checks",
+			"Priority matching",
+		],
 		featured: true,
 	},
 	{
 		label: "International guests",
-		price: "€350–400",
+		price: "€350-400",
 		note: "One-time fee, held until check-in opens",
-		perks: ["Full ID + selfie verification", "Relocation support", "Same refund guarantees"],
+		perks: [
+			"Full ID + selfie verification",
+			"Relocation support",
+			"Same refund guarantees",
+		],
 		featured: false,
 	},
 ];
 ---
 
-<section class="pricing" id="pricing">
+<section class="section-space" id="pricing">
 	<div class="wrap">
-		<span class="eyebrow">Pricing</span>
-		<h2>One fee. Held, not spent. No surprises on page three.</h2>
-		<p class="pricing-sub">
+		<h2 class="section-heading">
+			One fee. Held, not spent. No surprises on page three.
+		</h2>
+
+		<p class="mt-4 max-w-xl text-[15px] text-ink-soft">
 			Hosts set their own rent — we don't cap it. Our fee is priced by
 			verified residency, not nationality, because that's what actually
 			changes the work on our side.
 		</p>
 
-		<div class="pricing-grid">
-			{tiers.map((tier) => (
-				<div class:list={["tier-card", { featured: tier.featured }]}>
-					{tier.featured && <span class="tier-badge">Most common</span>}
-					<span class="tier-label">{tier.label}</span>
-					<span class="tier-price">{tier.price}</span>
-					<span class="tier-note">{tier.note}</span>
-					<ul class="tier-perks">
-						{tier.perks.map((perk) => (
-							<li>
-								<span class="perk-check" aria-hidden="true">✓</span>
-								{perk}
-							</li>
-						))}
-					</ul>
-				</div>
-			))}
+		<div class="mt-11 grid gap-6 md:grid-cols-2">
+			{
+				tiers.map((tier) => (
+					<article
+						class:list={[
+							"card relative rounded-box border bg-base-100 shadow-none",
+							tier.featured
+								? "border-primary shadow-xl shadow-primary/10"
+								: "border-base-300",
+						]}
+					>
+						{tier.featured && (
+							<div class="absolute -top-3 left-7">
+								<span class="badge badge-primary text-[10px] uppercase tracking-wider">
+									Most common
+								</span>
+							</div>
+						)}
+
+						<div class="card-body p-7">
+							<span class="text-sm font-medium text-ink-soft">
+								{tier.label}
+							</span>
+
+							<span class="mt-2 text-4xl font-medium">
+								{tier.price}
+							</span>
+
+							<span class="text-sm text-ink-faint">
+								{tier.note}
+							</span>
+
+							<div class="my-3 border-t border-dashed border-base-300" />
+
+							<ul class="flex flex-col gap-3">
+								{tier.perks.map((perk) => (
+									<li class="flex items-center gap-3 text-sm">
+										<span class="flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-teal-soft text-[10px] text-teal-brand">
+											✓
+										</span>
+										{perk}
+									</li>
+								))}
+							</ul>
+						</div>
+					</article>
+				))
+			}
 		</div>
 
-		<p class="pricing-footnote">
+		<p class="mt-7 text-sm text-ink-faint">
 			For comparison: fees on typical Irish room-share platforms currently
-			run €450–600+, captured the moment a host accepts.
+			run €450-600+, captured the moment a host accepts.
 		</p>
 	</div>
 </section>
-
-<style>
-	.pricing {
-		padding-block: 96px;
-	}
-
-	.pricing h2 {
-		font-size: clamp(26px, 3.4vw, 36px);
-		max-width: 600px;
-		margin-top: 14px;
-		font-weight: 600;
-	}
-
-	.pricing-sub {
-		margin-top: 16px;
-		color: var(--ink-soft);
-		max-width: 560px;
-		font-size: 15.5px;
-	}
-
-	.pricing-grid {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 22px;
-		margin-top: 44px;
-	}
-
-	.tier-card {
-		position: relative;
-		border: 1px solid var(--line);
-		border-radius: var(--radius-lg);
-		padding: 30px 28px 28px;
-		background: var(--paper-raised);
-		display: flex;
-		flex-direction: column;
-	}
-
-	.tier-card.featured {
-		border-color: var(--indigo);
-		box-shadow: 0 20px 44px -28px rgba(55, 47, 146, 0.45);
-	}
-
-	.tier-badge {
-		position: absolute;
-		top: -12px;
-		left: 28px;
-		background: var(--indigo);
-		color: var(--paper);
-		font-family: var(--font-mono);
-		font-size: 10.5px;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-		padding: 5px 11px;
-		border-radius: 999px;
-	}
-
-	.tier-label {
-		font-size: 14px;
-		color: var(--ink-soft);
-		font-weight: 500;
-	}
-
-	.tier-price {
-		font-family: var(--font-mono);
-		font-size: 40px;
-		font-weight: 500;
-		color: var(--ink);
-		margin-top: 10px;
-	}
-
-	.tier-note {
-		font-size: 13px;
-		color: var(--ink-faint);
-		margin-top: 4px;
-	}
-
-	.tier-perks {
-		list-style: none;
-		margin: 22px 0 0;
-		padding: 20px 0 0;
-		border-top: 1px dashed var(--line);
-		display: flex;
-		flex-direction: column;
-		gap: 11px;
-	}
-
-	.tier-perks li {
-		display: flex;
-		align-items: center;
-		gap: 9px;
-		font-size: 14px;
-		color: var(--ink);
-	}
-
-	.perk-check {
-		width: 17px;
-		height: 17px;
-		border-radius: 50%;
-		background: var(--teal-soft);
-		color: var(--teal);
-		font-size: 10px;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		flex-shrink: 0;
-	}
-
-	.pricing-footnote {
-		margin-top: 28px;
-		font-size: 13px;
-		color: var(--ink-faint);
-	}
-
-	@media (max-width: 720px) {
-		.pricing-grid {
-			grid-template-columns: 1fr;
-		}
-	}
-</style>

@@ -1,45 +1,122 @@
-/* ==========================================================================
-   LocaleHost brand design
-   Indigo/teal, Space Grotesk display, Inter body, IBM Plex Mono for data
-   ========================================================================== */
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap");
 
-:root {
-  /* Color */
-  --ink: #14152A;
-  --ink-soft: #5C5E74;
-  --ink-faint: #9395AA;
-  --paper: #F6F7FA;
-  --paper-raised: #FFFFFF;
-  --line: #E1E3EC;
+@import "tailwindcss";
 
-  --indigo: #372F92;
-  --indigo-bright: #4F46E5;
-  --indigo-deep: #221C5E;
-  --teal: #0E8C82;
-  --teal-soft: #E3F5F2;
-  --teal-bright: #14B8A6;
-
-  --amber: #C9762B;
-  --amber-soft: #FBEEE0;
-
-  /* Type */
-  --font-display: "Space Grotesk", "Helvetica Neue", sans-serif;
-  --font-body: "Inter", "Helvetica Neue", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
-
-  /* Layout */
-  --max-width: 1180px;
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
+@plugin "daisyui" {
+  themes: localehost --default;
 }
 
-* {
-  box-sizing: border-box;
+@plugin "daisyui/theme" {
+  name: "localehost";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-primary: #372F92;
+  --color-primary-content: #FFFFFF;
+
+  --color-secondary: #0E8C82;
+  --color-secondary-content: #FFFFFF;
+
+  --color-accent: #14B8A6;
+  --color-accent-content: #14152A;
+
+  --color-neutral: #14152A;
+  --color-neutral-content: #F6F7FA;
+
+  --color-base-100: #FFFFFF;
+  --color-base-200: #F6F7FA;
+  --color-base-300: #E1E3EC;
+  --color-base-content: #14152A;
+
+  --color-info: #4F46E5;
+  --color-success: #0E8C82;
+  --color-warning: #C9762B;
+  --color-error: #B45353;
+
+  --radius-selector: 999px;
+  --radius-field: 999px;
+  --radius-box: 1.375rem;
+
+  --border: 1px;
+
+  --depth: 1;
+  --noise: 0;
 }
 
-html {
-  scroll-behavior: smooth;
+@theme {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+
+  --color-ink: #14152A;
+  --color-ink-soft: #5C5E74;
+  --color-ink-faint: #9395AA;
+
+  --color-indigo-brand: #372F92;
+  --color-indigo-bright: #4F46E5;
+  --color-indigo-deep: #221C5E;
+
+  --color-teal-brand: #0E8C82;
+  --color-teal-soft: #E3F5F2;
+  --color-teal-bright: #14B8A6;
+
+  --color-amber-brand: #C9762B;
+  --color-amber-soft: #FBEEE0;
+
+  --max-width-site: 1180px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-base-200 text-base-content font-body;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-semibold;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+
+  button {
+    font-family: inherit;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  img,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full px-5 sm:px-6;
+    max-width: var(--max-width-site);
+  }
+
+  .section-space {
+    @apply py-16 md:py-24;
+  }
+
+  .section-heading {
+    @apply mt-3 max-w-2xl text-3xl md:text-4xl;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -55,149 +132,4 @@ html {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
-
-body {
-  margin: 0;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.55;
-  -webkit-font-smoothing: antialiased;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-display);
-  color: var(--ink);
-  margin: 0;
-  line-height: 1.08;
-  letter-spacing: -0.01em;
-}
-
-p {
-  margin: 0;
-}
-
-a {
-  color: inherit;
-}
-
-img,
-svg {
-  display: block;
-  max-width: 100%;
-}
-
-button {
-  font-family: inherit;
-}
-
-.wrap {
-  max-width: var(--max-width);
-  margin-inline: auto;
-  padding-inline: 24px;
-}
-
-@media (max-width: 640px) {
-  .wrap {
-    padding-inline: 20px;
-  }
-}
-
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--teal);
-  font-weight: 500;
-}
-
-.section {
-  padding-block: 96px;
-}
-
-@media (max-width: 780px) {
-  .section {
-    padding-block: 64px;
-  }
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 15px;
-  padding: 13px 22px;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  cursor: pointer;
-  text-decoration: none;
-  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-}
-
-.btn:active {
-  transform: translateY(1px);
-}
-
-.btn:focus-visible {
-  outline: 2px solid var(--indigo-bright);
-  outline-offset: 3px;
-}
-
-.btn-primary {
-  background: var(--ink);
-  color: var(--paper);
-}
-
-.btn-primary:hover {
-  background: var(--indigo-deep);
-}
-
-.btn-ghost {
-  background: transparent;
-  color: var(--ink);
-  border-color: var(--line);
-}
-
-.btn-ghost:hover {
-  border-color: var(--ink);
-}
-
-.btn-teal {
-  background: var(--teal);
-  color: white;
-}
-
-.btn-teal:hover {
-  background: #0B756D;
-}
-
-.pill {
-  display: inline-flex;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  padding: 5px 12px;
-  border-radius: 999px;
-  border: 1px solid var(--line);
-  color: var(--ink-soft);
-  background: var(--paper-raised);
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
 }

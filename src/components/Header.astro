@@ -1,123 +1,62 @@
----
-
----
-
-<header class="site-header">
-	<div class="wrap header-inner">
-		<a href="/" class="logo" aria-label="LocaleHost home">
-			<svg
-				width="26"
-				height="26"
-				viewBox="0 0 32 32"
-				fill="none"
-				aria-hidden="true"
+<header
+	class="sticky top-0 z-50 border-b border-base-300 bg-base-200/90 backdrop-blur-md"
+>
+	<div class="navbar wrap min-h-0 py-3">
+		<div class="navbar-start">
+			<a
+				href="/"
+				class="flex items-center gap-2 font-display text-xl font-semibold no-underline"
 			>
-				<rect width="32" height="32" rx="8" fill="var(--ink)"></rect>
-				<path
-					d="M8 17.5L16 10l8 7.5"
-					stroke="var(--teal-bright)"
-					stroke-width="2.4"
+				<svg
+					width="28"
+					height="28"
+					viewBox="0 0 32 32"
 					fill="none"
-					stroke-linecap="round"
-					stroke-linejoin="round"></path>
-				<path
-					d="M11 16v7h10v-7"
-					stroke="var(--paper)"
-					stroke-width="2.4"
-					fill="none"
-					stroke-linecap="round"
-					stroke-linejoin="round"></path>
-			</svg>
-			<span>LocaleHost</span>
-		</a>
+					aria-hidden="true"
+				>
+					<rect width="32" height="32" rx="8" fill="#14152A"></rect>
+					<path
+						d="M8 17.5L16 10l8 7.5"
+						stroke="#14B8A6"
+						stroke-width="2.4"
+						stroke-linecap="round"
+						stroke-linejoin="round"></path>
+					<path
+						d="M11 16v7h10v-7"
+						stroke="#F6F7FA"
+						stroke-width="2.4"
+						stroke-linecap="round"
+						stroke-linejoin="round"></path>
+				</svg>
+				LocaleHost
+			</a>
+		</div>
 
-		<nav class="nav-links" aria-label="Primary">
-			<a href="#how-it-works">How it works</a>
-			<a href="#trust">Trust &amp; safety</a>
-			<a href="#pricing">Pricing</a>
-		</nav>
+		<div class="navbar-center hidden md:flex">
+			<nav
+				class="flex items-center gap-8 text-sm font-medium text-ink-soft"
+				aria-label="Primary"
+			>
+				<a href="#how-it-works" class="hover:text-base-content"
+					>How it works</a
+				>
+				<a href="#trust" class="hover:text-base-content"
+					>Trust &amp; safety</a
+				>
+				<a href="#pricing" class="hover:text-base-content">Pricing</a>
+			</nav>
+		</div>
 
-		<div class="header-ctas">
-			<a href="#newsletter" class="btn btn-ghost header-cta-ghost"
-				>I'm a host</a
+		<div class="navbar-end gap-2">
+			<a
+				href="#newsletter"
+				class="btn btn-ghost btn-sm hidden sm:inline-flex"
 			>
-			<a href="#newsletter" class="btn btn-primary header-cta-primary"
-				>Find a room</a
-			>
+				I'm a host
+			</a>
+			<a href="#newsletter" class="btn btn-neutral btn-sm">
+				Find a room
+			</a>
 		</div>
 	</div>
 </header>
-
-<style>
-	.site-header {
-		position: sticky;
-		top: 0;
-		z-index: 50;
-		background: rgba(246, 247, 250, 0.86);
-		backdrop-filter: blur(10px);
-		border-bottom: 1px solid var(--line);
-	}
-
-	.header-inner {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 24px;
-		padding-block: 16px;
-	}
-
-	.logo {
-		display: inline-flex;
-		align-items: center;
-		gap: 9px;
-		text-decoration: none;
-		color: var(--ink);
-		font-family: var(--font-display);
-		font-weight: 600;
-		font-size: 19px;
-		letter-spacing: -0.01em;
-	}
-
-	.nav-links {
-		display: flex;
-		gap: 30px;
-		font-size: 14.5px;
-		font-weight: 500;
-		color: var(--ink-soft);
-	}
-
-	.nav-links a {
-		text-decoration: none;
-	}
-
-	.nav-links a:hover {
-		color: var(--ink);
-	}
-
-	.header-ctas {
-		display: flex;
-		gap: 10px;
-		flex-shrink: 0;
-	}
-
-	.header-cta-ghost,
-	.header-cta-primary {
-		padding: 9px 16px;
-		font-size: 13.5px;
-	}
-
-	@media (max-width: 780px) {
-		.nav-links {
-			display: none;
-		}
-		.header-cta-ghost {
-			display: none;
-		}
-	}
-
-	@media (max-width: 460px) {
-		.header-cta-primary {
-			padding: 9px 13px;
-		}
-	}
-</style>

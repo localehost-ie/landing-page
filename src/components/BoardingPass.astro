@@ -3,48 +3,73 @@
 ---
 
 <div
-	class="pass"
+	class="pass relative grid w-full max-w-[480px] grid-cols-[1fr_96px] overflow-hidden rounded-[22px] bg-base-100 shadow-2xl"
 	role="img"
 	aria-label="Example LocaleHost booking, showing the check-in window opening seven days before arrival, with the deposit held and not yet charged."
 >
-	<div class="pass-main">
-		<div class="pass-row pass-head">
-			<span class="pass-brand">LOCALEHOST</span>
-			<span class="pass-status">
-				<span class="dot" aria-hidden="true"></span>
+	<div class="flex flex-col gap-[18px] p-6">
+		<div class="flex items-center justify-between">
+			<span class="font-mono text-xs tracking-widest text-ink-faint">
+				LOCALEHOST
+			</span>
+			<span
+				class="badge badge-outline badge-success gap-2 font-mono text-[11px]"
+			>
+				<span class="h-1.5 w-1.5 rounded-full bg-secondary"></span>
 				Your booking
 			</span>
 		</div>
 
-		<div class="pass-title">
-			<span class="pass-label">Room</span>
-			<h3>Double room · Rathmines, Dublin</h3>
+		<div>
+			<span
+				class="block font-mono text-[10px] uppercase tracking-widest text-ink-faint"
+			>
+				Room
+			</span>
+			<h3 class="mt-1 text-xl">Double room · Rathmines, Dublin</h3>
 		</div>
 
-		<div class="pass-grid">
+		<div
+			class="grid grid-cols-2 gap-x-5 gap-y-4 border-t border-dashed border-base-300 pt-4"
+		>
 			<div>
-				<span class="pass-label">Guest</span>
-				<span class="pass-value">A. Byrne</span>
+				<span
+					class="block font-mono text-[10px] uppercase tracking-widest text-ink-faint"
+					>Guest</span
+				>
+				<span class="text-sm font-semibold">A. Byrne</span>
 			</div>
 			<div>
-				<span class="pass-label">Host</span>
-				<span class="pass-value">S. Ó Conaill</span>
+				<span
+					class="block font-mono text-[10px] uppercase tracking-widest text-ink-faint"
+					>Host</span
+				>
+				<span class="text-sm font-semibold">S. Ó Conaill</span>
 			</div>
 			<div>
-				<span class="pass-label">Move in</span>
-				<span class="pass-value">14 Aug</span>
+				<span
+					class="block font-mono text-[10px] uppercase tracking-widest text-ink-faint"
+					>Move in</span
+				>
+				<span class="text-sm font-semibold">14 Aug</span>
 			</div>
 			<div>
-				<span class="pass-label">Move out</span>
-				<span class="pass-value">28 Nov</span>
+				<span
+					class="block font-mono text-[10px] uppercase tracking-widest text-ink-faint"
+					>Move out</span
+				>
+				<span class="text-sm font-semibold">28 Nov</span>
 			</div>
 		</div>
 
-		<div class="pass-progress" aria-hidden="true">
-			<div class="pass-progress-track">
-				<div class="pass-progress-fill"></div>
-			</div>
-			<div class="pass-progress-labels">
+		<div class="pt-1">
+			<progress
+				class="progress progress-primary h-1.5 w-full"
+				value="42"
+				max="100"></progress>
+			<div
+				class="mt-2 flex justify-between font-mono text-[9px] text-ink-faint"
+			>
 				<span>Booked</span>
 				<span>Reconfirm window</span>
 				<span>Move in</span>
@@ -52,211 +77,55 @@
 		</div>
 	</div>
 
-	<div class="pass-notch pass-notch-top" aria-hidden="true"></div>
-	<div class="pass-notch pass-notch-bottom" aria-hidden="true"></div>
-
-	<div class="pass-stub">
-		<div class="barcode" aria-hidden="true"></div>
-		<span class="pass-code">DUB · 8842 KX</span>
+	<div
+		class="flex flex-col items-center justify-center gap-3 bg-neutral px-3 py-5"
+	>
+		<div class="barcode w-full"></div>
+		<span
+			class="font-mono text-[10px] tracking-widest text-neutral-content [writing-mode:vertical-rl]"
+		>
+			DUB · 8842 KX
+		</span>
 	</div>
+
+	<span class="notch absolute -right-3 -top-3"></span>
+	<span class="notch absolute -right-3 -bottom-3"></span>
 </div>
 
 <style>
 	.pass {
-		position: relative;
-		display: grid;
-		grid-template-columns: 1fr auto;
-		background: var(--paper-raised);
-		border-radius: var(--radius-lg);
 		box-shadow:
-			inset 0 0 0 1px var(--line),
+			inset 0 0 0 1px #e1e3ec,
 			0 24px 60px -24px rgba(20, 21, 42, 0.35);
-		/* box-shadow: 0 24px 60px -24px rgba(20, 21, 42, 0.35); */
-		/* border: 1px solid var(--line); */
-		max-width: 480px;
-		overflow: hidden;
 		transform: rotate(-1.2deg);
 	}
 
-	.pass-main {
-		padding: 26px 24px;
-		display: flex;
-		flex-direction: column;
-		gap: 18px;
-	}
-
-	.pass-row {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-
-	.pass-brand {
-		font-family: var(--font-mono);
-		font-size: 12px;
-		letter-spacing: 0.12em;
-		color: var(--ink-faint);
-	}
-
-	.pass-status {
-		display: inline-flex;
-		align-items: center;
-		gap: 6px;
-		font-family: var(--font-mono);
-		font-size: 11.5px;
-		letter-spacing: 0.02em;
-		color: var(--teal);
-		/* background: var(--teal-soft); */
-		padding: 5px 10px;
-		border-radius: 999px;
-	}
-
-	/* .dot {
-		width: 6px;
-		height: 6px;
-		border-radius: 50%;
-		background: var(--teal);
-		animation: pulse 2.4s ease-in-out infinite;
-	} */
-
-	@keyframes pulse {
-		0%,
-		100% {
-			opacity: 1;
-		}
-		50% {
-			opacity: 0.35;
-		}
-	}
-
-	.pass-title h3 {
-		font-size: 21px;
-		margin-top: 2px;
-	}
-
-	.pass-label {
-		display: block;
-		font-family: var(--font-mono);
-		font-size: 10.5px;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: var(--ink-faint);
-		margin-bottom: 3px;
-	}
-
-	.pass-value {
-		font-weight: 600;
-		font-size: 14.5px;
-	}
-
-	.pass-value-held {
-		color: var(--teal);
-	}
-
-	.pass-grid {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 16px 20px;
-		padding-top: 16px;
-		border-top: 1px dashed var(--line);
-	}
-
-	.pass-progress {
-		padding-top: 4px;
-	}
-
-	.pass-progress-track {
-		height: 5px;
-		border-radius: 999px;
-		background: var(--line);
-		overflow: hidden;
-	}
-
-	.pass-progress-fill {
-		width: 42%;
-		height: 100%;
-		background: linear-gradient(
-			90deg,
-			var(--indigo-bright),
-			var(--teal-bright)
-		);
-		border-radius: 999px;
-	}
-
-	.pass-progress-labels {
-		display: flex;
-		justify-content: space-between;
-		margin-top: 7px;
-		font-family: var(--font-mono);
-		font-size: 10px;
-		letter-spacing: 0.03em;
-		color: var(--ink-faint);
-	}
-
-	.pass-stub {
-		width: 96px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		gap: 12px;
-		background: var(--ink);
-		padding: 20px 14px;
-	}
-
 	.barcode {
-		width: 100%;
 		height: 90px;
 		background-image: repeating-linear-gradient(
 			90deg,
-			var(--paper) 0px,
-			var(--paper) 2px,
+			#f6f7fa 0px,
+			#f6f7fa 2px,
 			transparent 2px,
 			transparent 5px,
-			var(--paper) 5px,
-			var(--paper) 6px,
+			#f6f7fa 5px,
+			#f6f7fa 6px,
 			transparent 6px,
 			transparent 10px
 		);
-		opacity: 0.9;
 	}
 
-	.pass-code {
-		font-family: var(--font-mono);
-		font-size: 10px;
-		letter-spacing: 0.06em;
-		color: var(--paper);
-		writing-mode: vertical-rl;
-		opacity: 0.8;
-	}
-
-	.pass-notch {
-		position: absolute;
+	.notch {
 		width: 28px;
 		height: 28px;
 		border-radius: 50%;
-		background: var(--paper);
-		box-shadow:
-			inset 0 0 0 1px var(--line),
-			0 24px 60px -24px rgba(20, 21, 42, 0.35);
-		right: 88px;
-		margin-right: -10px;
-		transform: translateX(-20%);
-		z-index: 10;
-	}
-
-	.pass-notch-top {
-		top: -14px;
-	}
-
-	.pass-notch-bottom {
-		bottom: -14px;
+		background: #f6f7fa;
+		box-shadow: inset 0 0 0 1px #e1e3ec;
 	}
 
 	@media (max-width: 560px) {
 		.pass {
-			max-width: 100%;
-			transform: rotate(0deg);
+			transform: none;
 		}
 	}
 </style>
