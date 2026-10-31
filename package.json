@@ -5,6 +5,7 @@
   "engines": {
     "node": ">=22.12.0"
   },
+  "type": "module",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -15,6 +16,7 @@
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.4.4",
     "daisyui": "^5.7.50",
+    "resend": "^6.37.0",
     "tailwindcss": "^4.3.3"
   }
 }

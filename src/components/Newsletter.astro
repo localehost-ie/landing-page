@@ -12,8 +12,8 @@
 			</h2>
 
 			<p class="mt-5 max-w-[440px] text-[15px] text-base-300">
-				The full platform will be <span
-					class="text-teal-bright">launching soon</span
+				The full platform will be <span class="text-teal-bright"
+					>launching soon</span
 				>. Join the list and we'll email you the day it's live. Hosts
 				and guests get slightly different updates, so tell us which you
 				are.
@@ -77,6 +77,22 @@
 					</button>
 				</div>
 
+				<label
+					class="mt-4 flex items-start gap-2 text-xs text-[#9395AA]"
+				>
+					<input
+						type="checkbox"
+						name="consent"
+						id="newsletter-consent"
+						required
+						class="checkbox checkbox-sm checkbox-primary"
+					/>
+					<span>
+						I agree to receive LocaleHost launch announcements and
+						occasional updates. I can unsubscribe at any time.
+					</span>
+				</label>
+
 				<p
 					class="mt-4 text-xs text-[#7c7ea0]"
 					id="form-note"
@@ -116,6 +132,8 @@
 			tab.classList.remove("!text-[#9395AA]");
 			tab.classList.add("!text-[#14152A]");
 			tab.setAttribute("aria-selected", "true");
+
+			audienceField.value = tab.dataset.audience ?? "guest";
 		});
 	});
 
@@ -139,6 +157,10 @@
 				body: JSON.stringify({
 					email: email.value,
 					audience: audienceField.value,
+					consent:
+						form.querySelector<HTMLInputElement>(
+							"#newsletter-consent",
+						)?.checked === true,
 				}),
 			});
 
